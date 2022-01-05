@@ -6,9 +6,9 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
     <% if user_signed_in? %>
-      <span class="navbar-text ml-auto">
+      <span class="navbar-text">
         Welcome, <strong><%= current_user.username %></strong>!
       </span>
     <% end %>
