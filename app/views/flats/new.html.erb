@@ -1,1 +1,9 @@
 <h1>Add a new Cat Flat</h1>
+
+<%= simple_form_for @flat do |f| %>
+  <%= f.input :title %>
+  <%= f.input :location %>
+  <%= f.input :price, label: "Price per day" %>
+  <%= f.input :description %>
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>

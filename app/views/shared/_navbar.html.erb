@@ -2,25 +2,31 @@
   <%= link_to root_path, class: 'navbar-brand' do %>
     <i class="fas fa-cat"></i> CatBnB
   <% end %>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-    <% if user_signed_in? %>
-      <span class="navbar-text">
-        Welcome, <strong><%= current_user.username %></strong>!
-      </span>
-    <% end %>
-
     <ul class="navbar-nav">
-      <li class="nav-item">
         <% if user_signed_in? %>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link' %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+              My Cat Flats
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to "All my flats", flats_path, class: 'dropdown-item' %>
+              <%= link_to "Add a new flat", new_flat_path, class: 'dropdown-item' %>
+            </div>
+          </li>
+          <li class="nav-item">
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link' %>
+          </li>
         <% else %>
-          <%= link_to "Login", new_user_session_path, class: 'nav-link' %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: 'nav-link' %>
+          </li>
         <% end %>
-      </li>
     </ul>
   </div>
 </nav>
