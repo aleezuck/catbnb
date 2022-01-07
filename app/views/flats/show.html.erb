@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-12 col-md-8">
+    <%= cl_image_tag @flat.photos.first.key, crop: :fill, class: 'img-fluid mb-3' %>
+
+    <h1><%= @flat.title %></h1>
+    <h5><%= @flat.location %></h5>
+    <p><%= @flat.description %></p>
+  </div>
+  <div class="col-12 col-md-4">
+    <h4>Book this flat</h2>
+  </div>
+</div>
