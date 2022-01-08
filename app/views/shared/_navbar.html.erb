@@ -18,6 +18,7 @@
               My Cat Flats
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to "My reservations", my_reservations_path, class: 'dropdown-item' %>
               <%= link_to "All my flats", flats_path, class: 'dropdown-item' %>
               <%= link_to "Add a new flat", new_flat_path, class: 'dropdown-item' %>
             </div>

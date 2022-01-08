@@ -1,0 +1,24 @@
+<h1>My reservations</h1>
+
+<ul class="list-group my-3">
+  <% @bookings.each do |booking| %>
+    <li class="list-group-item">
+      <div class="d-flex w-100 justify-content-between">
+        <div>
+          <h5>
+            <%= link_to booking.flat.title, flat_path(booking.flat) %>
+          </h5>
+          <ul>
+            <li>Visitor: <%= booking.user.username %></li>
+            <li>Arrival date: <%= booking.start_date.strftime("%B %e, %Y") %></li>
+            <li>Departure date: <%= booking.end_date.strftime("%B %e, %Y") %></li>
+          </ul>
+        </div>
+        <div>
+          <a href="#" class="btn btn-success">Approve</a>
+          <a href="#" class="btn btn-danger">Decline</a>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

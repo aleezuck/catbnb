@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
-  skip_after_action :verify_authorized, only: [:my_trips]
-  after_action :verify_policy_scoped, only: [:my_trips]
+  skip_after_action :verify_authorized, only: [:my_trips, :my_reservations]
+  after_action :verify_policy_scoped, only: [:my_trips, :my_reservations]
 
   def create
     @booking = Booking.new(booking_params)
@@ -16,7 +16,13 @@ class BookingsController < ApplicationController
   end
 
   def my_trips
-    @bookings = policy_scope(Booking)
+    @bookings = Booking.where(user: current_user)
+    policy_scope(@bookings)
+  end
+
+  def my_reservations
+    @bookings = current_user.reservations
+    policy_scope(@bookings)
   end
 
   private
