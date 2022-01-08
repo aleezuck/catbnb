@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :flats do
     resources :bookings, only: [:create]
   end
+
+  get '/my_trips', to: 'bookings#my_trips', as: :my_trips
 end

@@ -1,4 +1,7 @@
 class BookingsController < ApplicationController
+  skip_after_action :verify_authorized, only: [:my_trips]
+  after_action :verify_policy_scoped, only: [:my_trips]
+
   def create
     @booking = Booking.new(booking_params)
     @booking.flat = Flat.find(params[:flat_id])
@@ -10,6 +13,10 @@ class BookingsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def my_trips
+    @bookings = policy_scope(Booking)
   end
 
   private
