@@ -1,0 +1,22 @@
+<h1>My trips</h1>
+
+<ul class="list-group my-3">
+  <% @bookings.each do |booking| %>
+    <li class="list-group-item">
+      <h5>
+        <%= link_to booking.flat.title, flat_path(booking.flat) %>
+        <% if booking.status == 'pending' %>
+          <span class="badge badge-pill badge-warning ml-2">Pending</span>
+        <% elsif booking.status == 'approved' %>
+          <span class="badge badge-pill badge-success ml-2">Approved</span>
+        <% elsif booking.status == 'declined' %>
+          <span class="badge badge-pill badge-danger ml-2">Declined</span>
+        <% end %>
+      </h5>
+      <ul>
+        <li>Arrival date: <%= booking.start_date.strftime("%B %e, %Y") %></li>
+        <li>Departure date: <%= booking.end_date.strftime("%B %e, %Y") %></li>
+      </ul>
+    </li>
+  <% end %>
+</ul>

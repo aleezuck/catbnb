@@ -10,11 +10,15 @@
   <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
     <ul class="navbar-nav">
         <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "My Trips", my_trips_path, class: 'nav-link' %>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
               My Cat Flats
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to "My reservations", my_reservations_path, class: 'dropdown-item' %>
               <%= link_to "All my flats", flats_path, class: 'dropdown-item' %>
               <%= link_to "Add a new flat", new_flat_path, class: 'dropdown-item' %>
             </div>

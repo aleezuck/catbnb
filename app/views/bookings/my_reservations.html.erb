@@ -1,0 +1,30 @@
+<h1>My reservations</h1>
+
+<ul class="list-group my-3">
+  <% @bookings.each do |booking| %>
+    <li class="list-group-item">
+      <div class="d-flex w-100 justify-content-between">
+        <div>
+          <h5>
+            <%= link_to booking.flat.title, flat_path(booking.flat) %>
+          </h5>
+          <ul>
+            <li>Visitor: <%= booking.user.username %></li>
+            <li>Arrival date: <%= booking.start_date.strftime("%B %e, %Y") %></li>
+            <li>Departure date: <%= booking.end_date.strftime("%B %e, %Y") %></li>
+          </ul>
+        </div>
+        <div>
+          <% if booking.status_pending? %>
+            <%= link_to "Approve", approve_booking_path(booking), method: :patch, class: 'btn btn-success' %>
+            <%= link_to "Decline", decline_booking_path(booking), method: :patch, class: 'btn btn-danger' %>
+          <% elsif booking.status_approved? %>
+            <span class="badge badge-pill badge-success ml-2">Approved</span>
+          <% elsif booking.status_declined? %>
+            <span class="badge badge-pill badge-danger ml-2">Declined</span>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
