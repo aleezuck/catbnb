@@ -14,6 +14,12 @@ class FlatsController < ApplicationController
       @flats = @flats.where('location ILIKE ?', "%#{params[:query]}%")
     end
 
+    @markers = @flats.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
   end
 
   def show
