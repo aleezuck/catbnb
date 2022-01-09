@@ -1,0 +1,31 @@
+<h1>Search results</h1>
+
+<%= "No flats found that match your search" if @flats.count == 0 %>
+
+<div class="row my-4">
+  <div class="col-lg-6">
+    <% @flats.each do |flat| %>
+      <div class="card my-3">
+    <div class="row">
+      <div class="col-md-3">
+        <%= cl_image_tag flat.photos.first.key, crop: :fill, class: 'card-img' %>
+      </div>
+      <div class="col-md-9">
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= flat.title %>
+          </h5>
+          <p class="card-text">
+            <%= flat.location %>
+          </p>
+          <%= link_to "View this cat flat", flat_path(flat), class: 'btn btn-success stretched-link' %>
+        </div>
+      </div>
+    </div>
+  </div>
+    <% end %>
+  </div>
+  <div class="col-lg-6">
+    map placeholder
+  </div>
+</div>

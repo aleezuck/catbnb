@@ -1,8 +1,19 @@
 class FlatsController < ApplicationController
+  skip_after_action :verify_authorized, only: [:search]
+  after_action :verify_policy_scoped, only: [:search]
   before_action :set_flat, only: [:show, :edit, :update, :destroy]
 
   def index
+    @flats = policy_scope(Flat).where(user: current_user)
+  end
+
+  def search
     @flats = policy_scope(Flat)
+
+    if params[:query].present?
+      @flats = @flats.where('location ILIKE ?', "%#{params[:query]}%")
+    end
+
   end
 
   def show

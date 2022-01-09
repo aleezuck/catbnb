@@ -1,1 +1,7 @@
 <h1>CatBnB</h1>
+<h2>Find a flat for a cat</h2>
+
+<%= form_tag search_path, method: :get, class: 'my-4' do %>
+  <%= text_field_tag :query, params[:query], class: 'form-control', placeholder: 'Where are you going?' %>
+  <%= submit_tag "Search", class: "btn btn-primary my-3" %>
+<% end %>

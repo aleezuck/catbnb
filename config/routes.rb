@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :bookings, only: [:create]
   end
 
+  get '/search', to: 'flats#search', as: :search
+
   get '/my_trips', to: 'bookings#my_trips', as: :my_trips
   get '/my_reservations', to: 'bookings#my_reservations', as: :my_reservations
 
