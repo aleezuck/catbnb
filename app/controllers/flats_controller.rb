@@ -14,6 +14,25 @@ class FlatsController < ApplicationController
       @flats = @flats.where('location ILIKE ?', "%#{params[:query]}%")
     end
 
+    if params[:start_date].present? && params[:end_date].present?
+      search_flats = []
+      start_date = Date.parse(params[:start_date])
+      end_date = Date.parse(params[:end_date])
+
+      @flats.each do |flat|
+        found = false
+        flat.bookings.each do |booking|
+          if (start_date <= booking.start_date && end_date >= booking.start_date) || (start_date <= booking.end_date && end_date >= booking.end_date) || (start_date >= booking.start_date && end_date <= booking.end_date)
+            found = true
+            break
+          end
+        end
+        search_flats << flat unless found
+      end
+
+      @flats = Flat.where(id: search_flats.map(&:id))
+    end
+
     @markers = @flats.geocoded.map do |flat|
       {
         lat: flat.latitude,

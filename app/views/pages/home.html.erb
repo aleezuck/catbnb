@@ -1,7 +1,11 @@
 <h1>CatBnB</h1>
 <h2>Find a flat for a cat</h2>
 
-<%= form_tag search_path, method: :get, class: 'my-4' do %>
-  <%= text_field_tag :query, params[:query], class: 'form-control', placeholder: 'Where are you going?' %>
+<%= link_to "See all cat flats", search_path, class: 'btn btn-success' %>
+
+<%= form_tag search_path, method: :get, class: 'my-4 form-inline', id: 'search-flats' do %>
+  <%= text_field_tag :query, params[:query], class: 'form-control mr-2', placeholder: 'Where are you going?' %>
+  <%= text_field_tag :start_date, params[:start_date], class: 'form-control mr-2 datepicker', placeholder: 'Trip start date' %>
+  <%= text_field_tag :end_date, params[:end_date], class: 'form-control mr-2 datepicker', placeholder: 'Trip end date' %>
   <%= submit_tag "Search", class: "btn btn-primary my-3" %>
 <% end %>
