@@ -2,6 +2,8 @@
 
 CatBnB is an AirBnB app for cats. 🐱 Built with Ruby on Rails.
 
+A live demo of the site is available on Heroku: https://catbnb-rails.herokuapp.com/
+
 ### Setup
 
 ##### 1. Clone repository
