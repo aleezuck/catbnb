@@ -1,14 +1,28 @@
 import flatpickr from "flatpickr";
 
 const initFlatpickr = () => {
-  const unavailableDates = JSON.parse(document.querySelector('#book-flat').dataset.unavailable);
+  const bookFlat = document.getElementById('book-flat');
 
-  flatpickr(".datepicker", {
-    minDate: "today",
-    disable: unavailableDates,
-    altInput: true,
-    allowInput: true
-  });
+  if (bookFlat) {
+    const unavailableDates = JSON.parse(bookFlat.dataset.unavailable);
+
+    flatpickr(".datepicker", {
+      minDate: "today",
+      disable: unavailableDates,
+      altInput: true,
+      allowInput: true
+    });
+  }
+
+  const searchFlats = document.getElementById('search-flats');
+
+  if (searchFlats) {
+    flatpickr(".datepicker", {
+      minDate: "today",
+      altInput: true,
+      allowInput: true
+    });
+  }
 }
 
 export { initFlatpickr };
