@@ -6,7 +6,7 @@
     <h5><%= @flat.location %></h5>
     <p><%= @flat.description %></p>
   </div>
-  <div class="col-12 col-md-4">
+  <div class="col-12 col-md-4" id="book-flat" data-unavailable="<%= @flat.unavailable_dates.to_json %>">
     <h4>Book this flat</h2>
     <%= render 'bookings/form', flat: @flat, booking: @booking %>
   </div>
