@@ -9,7 +9,6 @@ const initFlatpickr = () => {
     flatpickr(".datepicker", {
       minDate: "today",
       disable: unavailableDates,
-      altInput: true,
       allowInput: true
     });
   }

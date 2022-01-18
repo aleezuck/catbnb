@@ -1,6 +1,10 @@
 <%= simple_form_for [flat, booking] do |f| %>
-  <%= f.input :start_date, as: :string, input_html: { class: 'datepicker', placeholder: 'Start date' } %>
-  <%= f.input :end_date, as: :string, input_html: { class: 'datepicker', placeholder: 'End date' } %>
+  <%= f.input :start_date,
+              as: :string,
+              input_html: { data: { action: 'blur->booking-form#updatePriceTable' }, class: 'datepicker', placeholder: 'Start date' } %>
+  <%= f.input :end_date,
+              as: :string,
+              input_html: { data: { action: 'blur->booking-form#updatePriceTable' }, class: 'datepicker', placeholder: 'End date' } %>
 
   <table class="table table-borderless d-none">
     <tbody>
