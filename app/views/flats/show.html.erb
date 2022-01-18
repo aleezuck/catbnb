@@ -7,7 +7,8 @@
     <p><%= @flat.description %></p>
     <p>Host: <%= @flat.user.username %></p>
   </div>
-  <div class="col-12 col-md-4" id="book-flat" data-unavailable="<%= @flat.unavailable_dates.to_json %>">
+
+  <div class="col-12 col-md-4" id="book-flat" data-controller="booking-form" data-unavailable="<%= @flat.unavailable_dates.to_json %>" data-price="<%= @flat.price %>">
     <h4>Book this flat</h2>
     <p>Price: $<%= @flat.price %>/day</p>
     <%= render 'bookings/form', flat: @flat, booking: @booking %>
