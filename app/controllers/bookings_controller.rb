@@ -8,6 +8,8 @@ class BookingsController < ApplicationController
     @flat = Flat.find(params[:flat_id])
     @booking.flat = @flat
     @booking.user = current_user
+    days = (@booking.end_date - @booking.start_date).to_i
+    @booking.price = @flat.price * days
     authorize(@booking)
 
     if @flat.user == current_user
