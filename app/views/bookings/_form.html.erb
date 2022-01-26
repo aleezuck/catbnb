@@ -15,15 +15,15 @@
                 placeholder: 'End date',
                 autocomplete: 'off' } %>
 
-    <table class="table table-borderless d-none" id="booking-price-table">
+    <table class="table table-borderless d-none" id="booking-price-table" data-booking-form-target="bookingPriceTable">
       <tbody>
         <tr>
           <td>Day(s)</td>
-          <td id="booking-days"></td>
+          <td data-booking-form-target="bookingDays"></td>
         </tr>
         <tr>
           <td>Total</td>
-          <td id="booking-price"></td>
+          <td data-booking-form-target="bookingPrice"></td>
         </tr>
       </tbody>
     </table>
@@ -31,7 +31,7 @@
     <% if flat.user == current_user %>
       <span class="btn btn-primary btn-block disabled">This flat belongs to you</span>
     <% else %>
-      <%= f.submit 'Book Now', class: 'btn btn-primary btn-block', id: 'booking-submit', disabled: true %>
+      <%= f.submit 'Book Now', class: 'btn btn-primary btn-block', id: 'booking-submit', data: { 'booking-form-target' => 'bookingSubmit' }, disabled: true %>
     <% end %>
   <% end %>
 </div>
