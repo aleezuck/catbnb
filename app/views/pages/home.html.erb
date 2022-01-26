@@ -3,9 +3,19 @@
 
 <%= link_to "See all cat flats", search_path, class: 'btn btn-success' %>
 
-<%= form_tag search_path, method: :get, class: 'my-4 form-inline', id: 'search-flats' do %>
-  <%= text_field_tag :query, params[:query], class: 'form-control mr-2', placeholder: 'Where are you going?' %>
-  <%= text_field_tag :start_date, params[:start_date], class: 'form-control mr-2 datepicker', placeholder: 'Trip start date' %>
-  <%= text_field_tag :end_date, params[:end_date], class: 'form-control mr-2 datepicker', placeholder: 'Trip end date' %>
-  <%= submit_tag "Search", class: "btn btn-primary my-3" %>
-<% end %>
+<div data-controller="search-form">
+  <%= form_tag search_path, method: :get, class: 'my-4 form-inline', id: 'search-flats' do %>
+    <%= text_field_tag :query, params[:query], class: 'form-control mr-2', placeholder: 'Where are you going?' %>
+    <%= text_field_tag :start_date,
+                      params[:start_date],
+                      class: 'form-control mr-2 datepicker',
+                      data: { 'search-form-target' => 'startDate', 'action' => 'input->search-form#updateEndDate' },
+                      placeholder: 'Trip start date' %>
+    <%= text_field_tag :end_date,
+                      params[:end_date],
+                      class: 'form-control mr-2 datepicker',
+                      data: { 'search-form-target' => 'endDate', 'action' => 'input->search-form#updateStartDate' },
+                      placeholder: 'Trip end date' %>
+    <%= submit_tag "Search", class: "btn btn-primary my-3" %>
+  <% end %>
+</div>

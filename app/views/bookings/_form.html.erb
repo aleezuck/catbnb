@@ -1,27 +1,37 @@
-<%= simple_form_for [flat, booking] do |f| %>
-  <%= f.input :start_date,
-              as: :string,
-              input_html: { data: { action: 'input->booking-form#updatePriceTable' }, class: 'datepicker', placeholder: 'Start date', autocomplete: 'off' } %>
-  <%= f.input :end_date,
-              as: :string,
-              input_html: { data: { action: 'input->booking-form#updatePriceTable' }, class: 'datepicker', placeholder: 'End date', autocomplete: 'off' } %>
+<div class="col-12 col-md-4" id="book-flat" data-controller="booking-form" data-booking-form-target="bookFlat" data-unavailable="<%= @flat.unavailable_dates.to_json %>" data-price="<%= @flat.price %>">
+  <h4>Book this flat</h2>
+  <p>Price: $<%= @flat.price %>/day</p>
+  <%= simple_form_for [flat, booking] do |f| %>
+    <%= f.input :start_date,
+                as: :string,
+                input_html: { data: { 'booking-form-target' => 'startDate', 'action' => 'input->booking-form#updatePriceTable input->booking-form#updateEndDate' },
+                class: 'datepicker',
+                placeholder: 'Start date',
+                autocomplete: 'off' } %>
+    <%= f.input :end_date,
+                as: :string,
+                input_html: { data: { 'booking-form-target' => 'endDate', 'action' => 'input->booking-form#updatePriceTable input->booking-form#updateStartDate' },
+                class: 'datepicker',
+                placeholder: 'End date',
+                autocomplete: 'off' } %>
 
-  <table class="table table-borderless d-none" id="booking-price-table">
-    <tbody>
-      <tr>
-        <td>Day(s)</td>
-        <td id="booking-days"></td>
-      </tr>
-      <tr>
-        <td>Total</td>
-        <td id="booking-price"></td>
-      </tr>
-    </tbody>
-  </table>
+    <table class="table table-borderless d-none" id="booking-price-table" data-booking-form-target="bookingPriceTable">
+      <tbody>
+        <tr>
+          <td>Day(s)</td>
+          <td data-booking-form-target="bookingDays"></td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td data-booking-form-target="bookingPrice"></td>
+        </tr>
+      </tbody>
+    </table>
 
-  <% if flat.user == current_user %>
-    <span class="btn btn-primary btn-block disabled">This flat belongs to you</span>
-  <% else %>
-    <%= f.submit 'Book Now', class: 'btn btn-primary btn-block disabled', id: 'booking-submit' %>
+    <% if flat.user == current_user %>
+      <span class="btn btn-primary btn-block disabled">This flat belongs to you</span>
+    <% else %>
+      <%= f.submit 'Book Now', class: 'btn btn-primary btn-block', id: 'booking-submit', data: { 'booking-form-target' => 'bookingSubmit' }, disabled: true %>
+    <% end %>
   <% end %>
-<% end %>
+</div>

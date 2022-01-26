@@ -23,7 +23,7 @@ class FlatsController < ApplicationController
         found = false
         flat.bookings.each do |booking|
           if (start_date <= booking.start_date && end_date >= booking.start_date) || (start_date <= booking.end_date && end_date >= booking.end_date) || (start_date >= booking.start_date && end_date <= booking.end_date)
-            found = true
+            found = true unless booking.status_declined?
             break
           end
         end
