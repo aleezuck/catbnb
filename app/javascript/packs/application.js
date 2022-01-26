@@ -17,7 +17,6 @@ import 'bootstrap';
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-import { initFlatpickr } from "../plugins/flatpickr";
 import { initMapbox } from '../plugins/init_mapbox';
 
 document.addEventListener('turbolinks:load', () => {
